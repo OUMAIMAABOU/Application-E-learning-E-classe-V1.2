@@ -1,3 +1,4 @@
+<?php include_once 'server.php';?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,7 +11,6 @@
 </head>
 <body>
     <?php
-    include_once 'server.php';
 
     $query = mysqli_query ($conn,"SELECT * FROM students WHERE  id ='" . $_GET["id"] . "'");
 
@@ -19,13 +19,14 @@
         
     ?>
    
-<form method="POST" action="updatephp.php">
+<form method="POST" action="">
 
             
 <div class="col-md-6">
        <input type="hidden" class="form-control" name="id" value="<?php echo $row['id'] ; ?>" >
         <label for="img" class="form-label">image</label>
-        <input type="text" class="form-control" name="img"  value="<?php echo $row['img'] ; ?>">
+        
+        <input type="file"  name="img" class="form-control-file"  value="<?php echo $row['img'] ; ?>">
       
     </div>
     
@@ -52,6 +53,7 @@
     <div class="col-md-6">
         <label for="date" class="form-label">Date of admission		</label>
         <input type="date" class="form-control" name="date" id="date" value="<?php echo $row['dt'] ; ?>">
+        
     </div>
 
 
@@ -60,10 +62,32 @@
     <input type="submit" name="update" value="UPDATE">
     </div>
 </form> 
+<?php
+   if(!empty($_POST['img'])&&!empty($_POST['name'])&&!empty($_POST['email'])&&!empty($_POST['phone'])&&!empty($_POST['Number'])&&!empty($_POST['date'])){
 
+     $id=$_POST['id'];
+     $img=$_POST['img'];
+     $nom=$_POST['name'];
+     $email=$_POST['email'];
+     $phone= $_POST['phone'];
+     $nbr= $_POST['Number'];
+     $date=$_POST['date'];
+    $sql="UPDATE students 
+    SET img = '$img', nom = '$nom',email = '$email',phone1 = '$phone',phone2 = '$nbr',dt = '$date' WHERE id ='" .$id . "'";		
+    
+    if (mysqli_query($conn, $sql)) {
+    header("location:student.php");
+    } else {
+     echo "Error updating record: " . mysqli_error($conn);
+    }
+}
+   
+?>
 <?php
     }
-   
+   ?>
+
+<?php
     mysqli_close($conn);
 ?>
 

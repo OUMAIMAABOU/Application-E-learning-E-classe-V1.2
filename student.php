@@ -82,7 +82,7 @@
   
       <input type="date" placeholder="Entrez votre DATE" class="form-control my-3" name="date">
   
-      <input type="file"  name="img" accept="image/png, image/jpeg">
+      <input type="file"  name="img" class="form-control-file">
      
 
       </div>
@@ -154,7 +154,7 @@
                      
                     <tr>                  
                       <?php  $row['id']; ?>
-                      <td><?php echo $row["img"]; ?></td>
+                      <td><img src="img/<?php echo $row["img"]; ?>"  style="WIDTH: 10vh;"></td>
                       <td><?php echo $row["nom"]; ?></td>
                       <td><?php echo $row["email"]; ?></td>
                       <td><?php echo $row["phone1"]; ?></td>

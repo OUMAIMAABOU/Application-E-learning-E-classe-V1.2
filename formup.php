@@ -1,4 +1,4 @@
-
+<?php include_once 'server.php';?>
     <!DOCTYPE html>
     <html lang="en">
     <head>
@@ -13,7 +13,7 @@
 
     </head>
     <?php
-    include_once 'server.php';
+ 
 
     $query = mysqli_query ($conn,"SELECT * FROM courses WHERE  id ='" . $_GET["id"] . "'");
 
@@ -23,7 +23,7 @@
     ?>
     <body style=" margin-top: 203px;">
         
-                <form  method="POST" action ="updatecourse.php">
+                <form  method="POST" action ="">
 
             
               
@@ -51,10 +51,30 @@
                 </form>        
             
   </body>
- 
+  <?php 
+      if(!empty($_POST['id']) && !empty($_POST['title']) && !empty($_POST['dur']) && !empty($_POST['prix']) ){    
+
+$id=$_POST['id'];
+$title=$_POST['title'];
+$dur=$_POST['dur'];
+$prix= $_POST['prix'];
+
+
+$sql="UPDATE courses 
+SET title_course = '$title', duree_course = '$dur',prix_course = '$prix' WHERE id ='" .$id . "'";		
+
+if (mysqli_query($conn, $sql)) {
+header("location:course.php");
+} else {
+echo "Error updating record: " . mysqli_error($conn);
+}
+      }
+?>
  
 </html>
 <?php
  } 
-  mysqli_close($conn);
+  
 ?>
+
+<?php mysqli_close($conn);?>
