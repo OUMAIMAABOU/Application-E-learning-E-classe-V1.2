@@ -1,3 +1,4 @@
+<?php include_once 'server.php';?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -9,7 +10,8 @@
     <link href="css/bootstrap.min.css" rel="stylesheet" >
 
     <link  href="css/dashboord.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdnrow.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
 
 
@@ -40,17 +42,89 @@
               <span class="fs-4 fw-bold text-dark my-2 mx-2">Student List</span>
                 <form class="d-flex my-2 px-3 ">
                   <i class="fas fa-sort mx-4 " style="font-size:30px;color:#00C1FE ;" ></i>
-                  <button class="form-control me-2 bg-info text-light px-3" style="font-size: small;" >  <a href="forma.php">ADD NEW STUDENT </a></button>
-                  <div class="modal" tabindex="-1" role="dialog">
-  
-                </form>
+                  <button  type="button" class="form-control me-2 btn btn-primary text-light px-3" data-toggle="modal" data-target="#exampleModal">  ADD NEW STUDENT</button>
+                  </form>
                             
-              </div>
-            </div>
+                            </div>
+                          
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Ajouter students</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+      <form  method="POST" action="">
+
+            
+              
+<div>  
+     
+      <input type="text" placeholder="Entrez votre nom" class="form-control my-3" name="name" id="name">
+  
+
+ 
+      <input type="email" placeholder="Entrez votre Email"class="form-control my-3" name="email" id="email">
+  
+
+ 
+      <input type="text" placeholder="Entrez votre Numbre" class="form-control my-3" name="phone" id="phone">
+  
+
+  
+      <input type="text" placeholder="Entrez numbre2" class="form-control my-3" name="Number">
+  
+      <input type="date" placeholder="Entrez votre DATE" class="form-control my-3" name="date">
+  
+      <input type="file"  name="img" accept="image/png, image/jpeg">
+     
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <input type="submit" class="btn btn-primary"  name="add" value="add" >
+      </div>
+      </form>  
+    </div>
+  </div>
+</div>
+</div>                 
+               
+<?PHP
+   if(!empty($_POST['img'])&&!empty($_POST['name'])&&!empty($_POST['email'])&&!empty($_POST['phone'])&&!empty($_POST['Number'])&&!empty($_POST['date'])){
+         $img=$_POST['img'];
+         $nom=$_POST['name'];
+         $email=$_POST['email'];
+         $phone= $_POST['phone'];
+         $nbr= $_POST['Number'];
+         $date=$_POST['date'];
+
+         $sql ="INSERT INTO students(img , nom , email , phone1 , phone2 , dt) VALUES ('$img','$nom','$email','$phone','$nbr','$date') " ;
+       
+    if (mysqli_query($conn, $sql)) {
+
+   } else {
+       echo "Error: " . $sql . ":-" . mysqli_error($conn);
+    }
+ 
+
+  }
+  else {
+   }
+
+?>
+            
             <div class=" table-responsive-sm table-responsive-md py-3">
               <table class="table bg-white table-borderless table-hover  mx-3 ">
                 <thead>
                   <tr class="bg_table text-table" style="background: #e5e5e57e;color: #ACACAC;">
+              
                     <th></th>
                     <th >Name</th>
                     <th >Email</th>
@@ -58,53 +132,55 @@
                     <th class="text-nowrap">Enroll Number</th>
                     <th class="text-nowrap">Date of admission</th>
                     <th></th>
-                    <th></th>
+                   
       
                   </tr>
                 </thead>
                 <tbody class="font-weight-400">
+              
+                     
                 <?php  
-    
+                 $icon1='<button name ="delete" > <i class="fas fa-pen  " style="font-size:28px;color:#00C1FE ;"></i></button>';
 
-                      $img= '<img src="img/86bc08c6e40f8d41ee54bd655ffbc696.jpg" alt="p" style="WIDTH: 100px;">';
-                      $icon1= '<i class="fas fa-pen  " style="font-size:28px;color:#00C1FE ;"></i></a>';
+                 $icon2= "<a href='delete.php' >delete</a>";
+                  
+                      $sql =mysqli_query($conn," select id,nom,img,email,phone1,phone2,dt from students ") ;
+                    
+                 
+                    
 
-                      $icon2= '<i class="fas fa-trash "  style="font-size:28px;color:#00C1FE ;"></a>';
-
-                      $data=file_get_contents('data.json');
-                      $js=json_decode($data,true);
-                      $js=array_reverse($js);  
-
-                      foreach($js as $js){
-                        echo'<tr>
-                   
-                        <td>'.$img.'</td>
-                        <td>'.$js['Name'].'</td>
-                        <td>'.$js['Email'].'</td>
-                        <td>'.$js['phone'].'</td>
-                        <td>'. $js['EnrollNumber'].'</td>
-                        <td>'.$js['Date'].'</td>
-                        <td><a href="delete.php?id='.$js['id'].'">'.$icon1.'</a>
-                        <td><a href="update.php?id='.$js['id'].'">'.$icon2.'</a>
-                       
-                        
-                       
-                        
-                    </td> </tr>';
-                      } 
+                      while($row = mysqli_fetch_array($sql)){
+                     ?>
+                     
+                    <tr>                  
+                      <?php  $row['id']; ?>
+                      <td><?php echo $row["img"]; ?></td>
+                      <td><?php echo $row["nom"]; ?></td>
+                      <td><?php echo $row["email"]; ?></td>
+                      <td><?php echo $row["phone1"]; ?></td>
+                      <td><?php echo $row["phone2"]; ?></td>
+                      <td><?php echo $row["dt"]; ?></td>
+                      <td><a href="delete.php?id=<?php echo $row["id"]; ?>">delete</a>
+                      <a href="update.php?id=<?php echo $row["id"]; ?>">update</a></td>
+                      </tr>
+                  
+                  <?php }   ?> 
+                      
+                  <?php  $conn->close();   ?> 
                   
 
-
-
-                ?>   
+             
+                
                 </tbody>
               </table>
             </div> 
       </div>      
      </div>   
-    
-    <script src="js/bootstrap.bundle.min.js" ></script>
-   
+     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>  
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+     <script src="js/bootstrap.bundle.min.js" ></script>   
     <script>
       var el = document.getElementById("dashboard");
       var toggleButton = document.getElementById("menu-toggle");
