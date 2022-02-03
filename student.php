@@ -14,7 +14,6 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
 
-
 </head>
 <body class="row">
   <main>
@@ -25,9 +24,6 @@
    
       </div>
 
-
-
-    
      <div id="page-content-dashboard">
 
     
@@ -137,14 +133,13 @@
                   </tr>
                 </thead>
                 <tbody class="font-weight-400">
-              
-                     
+                                   
                 <?php  
                  $icon1='<button name ="delete" > <i class="fas fa-pen  " style="font-size:28px;color:#00C1FE ;"></i></button>';
 
                  $icon2= "<a href='delete.php' >delete</a>";
                   
-                      $sql =mysqli_query($conn," select id,nom,img,email,phone1,phone2,dt from students ") ;
+                      $sql =mysqli_query($conn," SELECT * FROM students ORDER BY id desc ") ;
                     
                  
                     
@@ -160,8 +155,8 @@
                       <td><?php echo $row["phone1"]; ?></td>
                       <td><?php echo $row["phone2"]; ?></td>
                       <td><?php echo $row["dt"]; ?></td>
-                      <td><a href="delete.php?id=<?php echo $row["id"]; ?>">delete</a>
-                      <a href="update.php?id=<?php echo $row["id"]; ?>">update</a></td>
+                      <td><a href="delete.php?id=<?php echo $row["id"]; ?>"><img src="img/ic-delete.svg"></a>
+                      <a href="update.php?id=<?php echo $row["id"]; ?>"><img src=" img/ic-edit.svg"></a></td>
                       </tr>
                   
                   <?php }   ?> 

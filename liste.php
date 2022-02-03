@@ -1,3 +1,5 @@
+<?php include_once 'server.php';?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -31,10 +33,18 @@
                         <div class="p-3  shadow-sm d-flex justify-content-around align-items-center  " style="background: #F0F9FF;">
                             <div>
                                 <i class="fas fa-graduation-cap fs-5  p-1"></i>
-
+                           
+                    
+                 
                                 <p class="fs-5 mb-5 Secondary-text">Students</p>
-                            </div>
-                            <h3 class="fs-5 mt-5">243</h3>
+                            </div> 
+                            <?php  $sql =mysqli_query($conn," SELECT id FROM students order by id") ;
+                                 $row= mysqli_num_rows($sql);
+                                 
+                                echo '<h3 class="fs-5 mt-5 ">'.$row.'</h3>'
+                            ?>
+                          
+                            
                         </div>
                     </div>
 
@@ -45,8 +55,12 @@
 
                                 <p class="fs-5 mb-5 Secondary-text">Course</p>
                             </div>
-                            <h3 class="fs-5 mt-5">13</h3>
-                        </div>
+                            <?php  $sql =mysqli_query($conn," SELECT id FROM courses order by id") ;
+                                 $row= mysqli_num_rows($sql);
+                                 
+                                echo '<h3 class="fs-5 mt-5 ">'.$row.'</h3>'
+                            ?>                     
+                               </div>
                     </div>
 
                     <div class=" col-lg-3  col-md-5  mb-4" >
@@ -56,8 +70,13 @@
 
                                 <p class="fs-5 mb-5 Secondary-text">Payments</p>
                             </div>
-                            <h3 class="fs-5 mt-5">DH556,000</h3>
-                        </div>
+                            <?php  $sql =mysqli_query($conn," SELECT SUM(Amount_paid) as sum FROM payment_details ") ;
+                               while( $row= mysqli_fetch_assoc($sql)) {
+                                echo '<h3 class="fs-5 mt-5 ">'.$row['sum'].'dh </h3>';
+                               }
+                                 
+                               
+                            ?>                           </div>
                     </div>
 
                     <div class="col-lg-3 col-md-5  mb-4">
@@ -67,7 +86,12 @@
 
                                 <p class="fs-5 mb-5 ">Users</p>
                             </div>
-                            <h3 class="fs-5 mt-5">3</h3>
+                            <?php  $sql =mysqli_query($conn," SELECT id FROM logins order by id") ;
+                                 $row= mysqli_num_rows($sql);
+                                 
+                                echo '<h3 class="fs-5 mt-5 ">'.$row.'</h3>'
+                            ?>  
+                                 
                         </div>
                     </div>
                 </div>
@@ -92,5 +116,5 @@
     </script>
   </main>   
 </body>
-
+<?php   mysqli_close($conn); ?>  
 </html>

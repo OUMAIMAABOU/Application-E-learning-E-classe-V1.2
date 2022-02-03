@@ -127,7 +127,7 @@ else {
 
                   
                                       
-                    $sql =mysqli_query($conn," select * from courses ") ;
+                    $sql =mysqli_query($conn," SELECT * FROM courses ORDER BY id desc  ") ;
 
 
 
@@ -141,8 +141,8 @@ else {
                 <td><?php echo $row["title_course"]; ?></td>
                 <td><?php echo $row["duree_course"]; ?></td>
                 <td><?php echo $row["prix_course"]; ?>DH</td>
-                <td><a href="courdelete.php?id=<?php echo $row["id"]; ?>">delete</a></td>
-                <td> <a href="formup.php?id=<?php  echo $row["id"]; ?>">update</a></td>
+                <td><a href="courdelete.php?id=<?php echo $row["id"]; ?>"><img src="img/ic-delete.svg"></a></td>
+                <td> <a href="formup.php?id=<?php  echo $row["id"]; ?>"><img src=" img/ic-edit.svg"></a></td>
               
                 </tr>              
 <?php } ?>  

@@ -1,3 +1,4 @@
+<?php include_once 'server.php';?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,7 +15,7 @@
         <div  class="container-fluid ">
          <div class="row justify-content-center ">
              <div class=" col-sm-12 col-md-6 col-lg-3">
-                    <form class="from-container">
+                    <form class="from-container" methode="POST" action="">
                         <div class="form-group"> 
                                     
                             <div class="mb-4">
@@ -26,12 +27,12 @@
                             </div>    
                             <div class="mb-4">
                                 <label>Email </label>
-                                <input type="email" class="form-control" placeholder="ENTER YOUR EMAIL" >
+                                <input type="email" class="form-control" placeholder="ENTER YOUR EMAIL" name="email" >
                             
                             </div>
                                 <div class="mb-4">
                                 <label>Password</label>
-                                <input type="password" class="form-control" placeholder="ENTER YOUR EMAIL PASSWORD">
+                                <input type="password" class="form-control" placeholder="ENTER YOUR EMAIL PASSWORD" name ="password">
                             </div>
                             <div class="mb-4">
                                 <button  type="button" onclick="window.location.href='liste.php'" class="btn-info  " style=" width: 100%;" >
@@ -50,5 +51,33 @@
             
         </div>
     </main>
+    <?php
+ 
+    if(!empty($_POST['email'])&&!empty($_POST['password'])){
+        $email=$_POST['email'];
+        $pass=$_POST['password'];
+      $res=mysqli_query($conn," SELECT * FROM  login WHERE email ='$email' AND password ='$pass'");
+      if (mysqli_query($conn, $sql)) {
+
+      }
+      if(mysqli_num_rows($res)==1){
+          $row=mysqli_fetch_array($res);
+          if( $row['email']==$email && $row['password']==$email){
+          
+          }
+         
+      }
+      else{
+        echo "n'existe pas";
+      }
+    }
+    /* try{
+      $pdo=new PDO("mysql:host=localhost;dbname=bd","user","password");
+   }
+   catch(PDOException $e){
+      echo $e->getMessage();
+   } */
+    ?>
+    <?php   mysqli_close($conn); ?>  
  </body>
 </html>
