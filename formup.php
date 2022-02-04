@@ -5,11 +5,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>update</title>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="css/style.css">
+    <link href="css/bootstrap.min.css" rel="stylesheet" >
+    <link  href="css/dashboord.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
 
     </head>
     <?php
@@ -21,13 +21,22 @@
     {
         
     ?>
-    <body style=" margin-top: 203px;">
-        
-                <form  method="POST" action ="">
+    <body>
+    <div class="d-flex" id="dashboard">
+        <div class="bg" id="sidebar-dashboard">
+        <?php include 'sidebare.php'?>
+        </div>
+        <div id="page-content-dashboard">
+          
+          <div class=" px-0 ">
+            <?php include 'navbar.php'?>
+          </div>
+                <form  method="POST" action =""  >
 
             
               
-                  <div class="container col-sm-12 col-md-6 col-lg-8 ">  <div class="col-md-6">
+                  <div class="container "  style=" margin-top: 203px;"> 
+                   <div class="col-md-6">
                       <input type="hidden" class="form-control" name="id" value="<?php echo $row['id'] ; ?>" >
 
                        
@@ -44,11 +53,27 @@
                         <div class="my-3">
                        
                         <div class="col-12">
-                   <input type="submit" name="update" value="UPDATE">
+                   <input type="submit" name="update" value="UPDATE" class="form-control me-2 btn btn-primary text-light">
                         </div>
                 </div>
                   
-                </form>        
+                </form>    
+    
+    </div>    
+    </div>       
+                <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>  
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+      <script src="js/bootstrap.bundle.min.js" ></script>
+      <script>
+        var el = document.getElementById("dashboard");
+        var toggleButton = document.getElementById("menu-toggle");
+
+        toggleButton.onclick = function () {
+            el.classList.toggle("toggled");
+        };
+    </script>           
             
   </body>
   <?php 

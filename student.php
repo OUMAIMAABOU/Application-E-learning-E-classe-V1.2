@@ -107,11 +107,16 @@
 
    } else {
        echo "Error: " . $sql . ":-" . mysqli_error($conn);
+
     }
+
  
 
   }
+
   else {
+  
+
    }
 
 ?>
@@ -135,9 +140,7 @@
                 <tbody class="font-weight-400">
                                    
                 <?php  
-                 $icon1='<button name ="delete" > <i class="fas fa-pen  " style="font-size:28px;color:#00C1FE ;"></i></button>';
-
-                 $icon2= "<a href='delete.php' >delete</a>";
+         
                   
                       $sql =mysqli_query($conn," SELECT * FROM students ORDER BY id desc ") ;
                     

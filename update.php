@@ -18,50 +18,37 @@
     {
         
     ?>
-   
-<form method="POST" action="">
 
+          
+         
+            <form method="POST" action="">
+              <div class="px-5 ">
+                <input type="hidden" class="form-control " name="id" value="<?php echo $row['id'] ; ?>" >
+                
+                
+                    <input type="text"  class="form-control mt-5" name="name" value="<?php echo $row['nom'] ; ?>" >
             
-<div class="col-md-6">
-       <input type="hidden" class="form-control" name="id" value="<?php echo $row['id'] ; ?>" >
-        <label for="img" class="form-label">image</label>
-        
-        <input type="file"  name="img" class="form-control-file"  value="<?php echo $row['img'] ; ?>">
-      
-    </div>
-    
-
-    <div class="col-md-6">
-        <label for="name" class="form-label">Name</label>
-        <input type="text"  class="form-control" name="name" value="<?php echo $row['nom'] ; ?>" >
-    </div>
-
-    <div class="col-6">
-        <label for="email" class="form-label">Email</label>
-        <input type="email" class="form-control" name="email"  value="<?php echo $row['email'] ; ?>">
-    </div>
-
-    <div class="col-6">
-        <label for="phone" class="form-label">Phone </label>
-        <input type="text" class="form-control" name="phone"  value="<?php echo $row['phone1'] ; ?>">
-    </div>
-
-    <div class="col-md-6">
-        <label for="Number" class="form-label">Enroll Number	</label>
-        <input type="text" class="form-control" name="Number" value="<?php echo $row['phone2'] ; ?>">
-    </div>
-    <div class="col-md-6">
-        <label for="date" class="form-label">Date of admission		</label>
-        <input type="date" class="form-control" name="date" id="date" value="<?php echo $row['dt'] ; ?>">
-        
-    </div>
+                
+                    <input type="email" class="form-control mt-3" name="email"  value="<?php echo $row['email'] ; ?>">
+            
 
 
+                    <input type="text" class="form-control mt-3" name="phone"  value="<?php echo $row['phone1'] ; ?>">
+                
 
-    <div class="col-12">
-    <input type="submit" name="update" value="UPDATE">
-    </div>
-</form> 
+                    <input type="text" class="form-control mt-3" name="Number" value="<?php echo $row['phone2'] ; ?>">
+            
+
+                    <input type="date" class="form-control mt-3 " name="date" id="date" value="<?php echo $row['dt'] ; ?>">
+                    
+                    <input type="file"  name="img" class=" form-control me-2 mt-3 btn btn-light text-black"  value="<?php  ?>">
+
+                    <input type="submit" name="update" value="UPDATE" class="form-control mt-3 btn btn-primary text-light">
+                      
+                 
+                </div>  
+            </form> 
+         
 <?php
    if(!empty($_POST['img'])&&!empty($_POST['name'])&&!empty($_POST['email'])&&!empty($_POST['phone'])&&!empty($_POST['Number'])&&!empty($_POST['date'])){
 
