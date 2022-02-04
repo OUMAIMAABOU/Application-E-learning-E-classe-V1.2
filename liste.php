@@ -55,10 +55,11 @@
 
                                 <p class="fs-5 mb-5 Secondary-text">Course</p>
                             </div>
-                            <?php  $sql =mysqli_query($conn," SELECT id FROM courses order by id") ;
-                                 $row= mysqli_num_rows($sql);
+                            <?php  $sql =mysqli_query($conn," SELECT COUNT(id) as id FROM courses ") ;
+                               while($row=mysqli_fetch_assoc($sql)){ 
                                  
-                                echo '<h3 class="fs-5 mt-5 ">'.$row.'</h3>'
+                                echo '<h3 class="fs-5 mt-5 ">'.$row['id'].'</h3>';
+                            } 
                             ?>                     
                                </div>
                     </div>

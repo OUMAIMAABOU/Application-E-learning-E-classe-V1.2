@@ -141,8 +141,8 @@
                 <td><?php echo $row["nom"]; ?></td>
                 <td><?php echo $row["payment_schedule"]; ?></td>
                 <td><?php echo $row["b_Number"]; ?></td>
-                <td><?php echo $row["Amount_paid"]; ?></td>
-                <td><?php echo $row["Balance_amount"]; ?></td>
+                <td><?php echo $row["Amount_paid"]; ?>DH</td>
+                <td><?php echo $row["Balance_amount"]; ?>DH</td>
                 <td><?php echo $row["dat"]; ?></td>
                 <td></td>
               
