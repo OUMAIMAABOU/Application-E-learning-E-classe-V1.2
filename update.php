@@ -26,7 +26,7 @@
                 <input type="hidden" class="form-control " name="id" value="<?php echo $row['id'] ; ?>" >
                 
                 
-                    <input type="text"  class="form-control mt-5" name="name" value="<?php echo $row['nom'] ; ?>" >
+                    <input type="text"  class="form-control mt-5" name="name" value="<?php echo $row['nom'] ; ?>" required >
             
                 
                     <input type="email" class="form-control mt-3" name="email"  value="<?php echo $row['email'] ; ?>">

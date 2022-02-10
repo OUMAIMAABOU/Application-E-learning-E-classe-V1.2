@@ -1,4 +1,4 @@
-
+<?php  session_start();?>
 <div class="m-2 dark-text fs-4 fw-bold border-start border-5 border-info px-2">
           <h1> E-classe </h1>
         </div>
@@ -6,8 +6,8 @@
             <img src="img/profile.jpg" alt="profile picture"
                 class=" profile img-fluid rounded-circle mx-auto d-block my-2 p-1" style="width:80% ; ">
             <div class="text-center ">
-                <h2> Admin name </h2>
-                <span class=" text-info fs-4">Admin</span>
+                <h2> <?php echo $_SESSION["name"];?></h2>
+                <span class=" text-info fs-4"> admin </span>
             </div>
 
             

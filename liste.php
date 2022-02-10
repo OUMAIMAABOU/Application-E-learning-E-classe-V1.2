@@ -87,7 +87,7 @@
 
                                 <p class="fs-5 mb-5 ">Users</p>
                             </div>
-                            <?php  $sql =mysqli_query($conn," SELECT id FROM logins order by id") ;
+                            <?php  $sql =mysqli_query($conn," SELECT id FROM comptes order by id") ;
                                  $row= mysqli_num_rows($sql);
                                  
                                 echo '<h3 class="fs-5 mt-5 ">'.$row.'</h3>'
