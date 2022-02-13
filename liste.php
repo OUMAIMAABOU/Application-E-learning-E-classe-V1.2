@@ -1,5 +1,7 @@
-<?php include_once 'server.php';?>
-<?php include_once 'session.php';?>
+<?php include_once 'server.php';
+session();
+?>
+
 
 <!DOCTYPE html>
 <html lang="en">
