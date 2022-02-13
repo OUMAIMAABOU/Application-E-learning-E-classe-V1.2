@@ -1,5 +1,8 @@
 
 <?php include_once 'server.php';?>
+
+<?php include_once 'session.php';?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>

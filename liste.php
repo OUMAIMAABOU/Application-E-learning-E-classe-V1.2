@@ -1,4 +1,5 @@
 <?php include_once 'server.php';?>
+<?php include_once 'session.php';?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -20,7 +21,7 @@
         <div class="bg" id="sidebar-dashboard">
         <?php include 'sidebare.php'?>
         </div>
-      
+ 
 
        
         <div class="bg-white" id="page-content-dashboard">
@@ -117,5 +118,6 @@
     </script>
   </main>   
 </body>
-<?php   mysqli_close($conn); ?>  
+<?php   mysqli_close($conn);    
+     ?>  
 </html>

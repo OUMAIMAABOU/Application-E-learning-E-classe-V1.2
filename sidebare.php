@@ -1,4 +1,4 @@
-<?php  session_start();?>
+<?php include_once 'server.php';?>
 <div class="m-2 dark-text fs-4 fw-bold border-start border-5 border-info px-2">
           <h1> E-classe </h1>
         </div>
@@ -23,8 +23,13 @@
                 <i class="far fa-file-alt"></i> Report </a>
             <a href="#" class="list-group-item mx-5 border-0 bg-transparent ">
                 <i class="fas fa-sliders-h"></i> Settings</a>
-            <a href="index.php" class="list-group-item mx-5 border-0 bg-transparent  mt-5 mb-2 ">
-                Logout <i class="fas fa-sign-out-alt"></i> </a>
+            <a href="deconnexion.php" class="list-group-item mx-5 border-0 bg-transparent  mt-5 mb-2 ">
+                Logout 
+               
+                <i class="fas fa-sign-out-alt"></i> </a>
+
+
+
         </div>
    
    

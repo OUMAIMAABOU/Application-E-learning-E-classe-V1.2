@@ -1,4 +1,8 @@
-<?php include_once 'server.php';?>
+
+<?php  include_once 'server.php';?>
+<?php include_once 'session.php';?>
+
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -101,15 +105,9 @@
          $nbr= $_POST['Number'];
          $date=$_POST['date'];
 
-         $sql ="INSERT INTO students(img , nom , email , phone1 , phone2 , dt) VALUES ('$img','$nom','$email','$phone','$nbr','$date') " ;
-       
-    if (mysqli_query($conn, $sql)) {
-
-   } else {
-       echo "Error: " . $sql . ":-" . mysqli_error($conn);
-
-    }
-
+         $res ="INSERT INTO students(img , nom , email , phone1 , phone2 , dt) VALUES ('$img','$nom','$email','$phone','$nbr','$date') " ;
+     
+      addstudent($conn,$res);
  
 
   }

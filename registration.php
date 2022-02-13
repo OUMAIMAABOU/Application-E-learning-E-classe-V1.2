@@ -62,7 +62,10 @@
       $pass0= $_POST['password'];
       $nom=$_POST['nom'];
       $hash = password_hash($pass, PASSWORD_DEFAULT);
-      $sql=" INSERT INTO comptes(email,pass,nom) VALUES ('$email','$hash','$nom')";
+      if( $pass==$pass0){
+                   
+      
+      $sql=" INSERT INTO `comptes` (`id`, `email`, `pass`, `nom`) VALUES (NULL, '$email', '$hash', '$nom')";
         
      if (mysqli_query($conn, $sql)) {
        echo "b1";
@@ -75,16 +78,16 @@
   
  
    }
+  }
  
    else {
    
  
     }
   
-
+    mysqli_close($conn);
 ?>
-
-<?php   mysqli_close($conn); ?>  
+ 
 
      
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>

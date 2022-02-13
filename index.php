@@ -1,5 +1,13 @@
 <?php include_once 'server.php';?>
-<?php session_start() ; ?>
+<?php 
+ 
+ if(isset($_POST["connect"]))  
+ {  
+    $_SESSION["email"] = $_POST['email'];
+      $_SESSION['last_login_timestamp'] = time();  
+      header("location:liste.php");       
+ } 
+ ?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -32,28 +40,52 @@
                             </div>    
                             <div class="mb-4">
                                 <label>Email </label>
-                                <input type="email" class="form-control" placeholder="ENTER YOUR EMAIL" name="email" required>
+                                <input type="email" class="form-control" placeholder="ENTER YOUR EMAIL" name="email" 
+                                value="<?php if(isset($_COOKIE["member_email"])) { echo $_COOKIE["member_email"]; } ?>" required>
                             
                             </div>
                                 <div class="mb-4">
                                 <label>Password</label>
-                                <input type="password" class="form-control" placeholder="ENTER YOUR EMAIL PASSWORD" name ="password" required>
+                                <input type="password" class="form-control" placeholder="ENTER YOUR EMAIL PASSWORD" name ="password"
+                                value="<?php if(isset($_COOKIE["member_password"])) { echo $_COOKIE["member_password"]; } ?>" required>
                             </div>
-                            <?php
+                            <div class="mb-4">  
+                                <input type="checkbox" name="remember" <?php if(isset($_COOKIE["member_email"])) { ?> checked <?php } ?> />  
+                                <label for="remember-me">Remember me</label>  
+                            </div> 
+                                                    <?php
        
        if(isset($_POST['connect'])){
            if(!empty($_POST['email']) && !empty($_POST['password'])){
+            
    
            $email=mysqli_real_escape_string($conn,$_POST['email']);
            $pass= mysqli_real_escape_string($conn,$_POST['password']);
-          
+       
            $res=mysqli_query($conn," SELECT * FROM  comptes WHERE email = '$email' AND pass ='$pass'");
            $rows=mysqli_fetch_assoc($res);
            if(is_array($rows)){
               
          
            $_SESSION["name"]= $rows['nom'];
-           $_SESSION["email"]=$rows['email'];
+           $_SESSION["email"]=$_POST['email'];
+
+           if(!empty($_POST["remember"])) {
+            setcookie ("member_email",$email,time()+2592000);
+            setcookie ("member_password",$pass,time()+ 2592000);
+
+        }
+        else  
+        {  
+         if(isset($_COOKIE["member_email"]))   
+         {  
+          setcookie ("member_email","");  
+         }  
+         if(isset($_COOKIE["member_password"]))   
+         {  
+          setcookie ("member_password","");  
+         }  
+        }  
           
            header('location:liste.php');
            }
