@@ -1,6 +1,12 @@
 <?php include_once 'server.php';?>
 <?php 
  
+ if(isset($_POST["connect"]))  
+ {  
+    $_SESSION["email"] = $_POST['email'];
+      $_SESSION['last_login_timestamp'] = time();  
+      header("location:liste.php");       
+ } 
  ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -50,43 +56,46 @@
                                                     <?php
        
        if(isset($_POST['connect'])){
-        {  
-            $_SESSION["email"] = $_POST['email'];
-              $_SESSION['last_login_timestamp'] = time();  
-                 
-         } 
            if(!empty($_POST['email']) && !empty($_POST['password'])){
             
    
            $email=mysqli_real_escape_string($conn,$_POST['email']);
            $pass= mysqli_real_escape_string($conn,$_POST['password']);
        
-           $res=mysqli_query($conn," SELECT * FROM  comptes WHERE email = '$email' AND pass ='$pass'");
-           if(mysqli_num_rows($res) != 0){
-               
-               
-            $rows=mysqli_fetch_assoc($res);
+           $res=" SELECT * FROM  comptes WHERE email = '?' AND pass ='?'";
+          
+           $stmt = $conn->prepare($res); 
+           $stmt->bind_param("email", $email);
+           $stmt->bind_param("pass", $pass);
+           $stmt->execute();
+              
+            if ($stmt->fetchColumn() == 1){
+            $_SESSION["name"]= $rows['nom'];
+            $_SESSION["email"]=$_POST['email'];
             
-           $_SESSION["name"]= $rows['nom'];
-           $_SESSION["email"]=$_POST['email'];
-           
-
-           if(!empty($_POST["remember"])) {
-            setcookie ("member_email",$email,time()+2592000);
-            setcookie ("member_password",$pass,time()+ 2592000);
-
-        }
-        else  
-        {  
-         if(isset($_COOKIE["member_email"]))   
+ 
+            if(!empty($_POST["remember"])) {
+             setcookie ("member_email",$email,time()+2592000);
+             setcookie ("member_password",$pass,time()+ 2592000);
+ 
+         }
+         else  
          {  
-          setcookie ("member_email","");  
+          if(isset($_COOKIE["member_email"]))   
+          {  
+           setcookie ("member_email","");  
+          }  
+          if(isset($_COOKIE["member_password"]))   
+          {  
+           setcookie ("member_password","");  
+          }  
          }  
-     
-        }  
-       
-        header('location:liste.php');
-           }
+        
+         header('location:liste.php');
+            }
+            
+            
+          
           else{
              echo '<label  class ="text-danger mb-3 text-center"> Email ou mot de passe incorrect</label>';
               
