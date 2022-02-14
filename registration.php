@@ -8,14 +8,38 @@
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
      <link rel="stylesheet" href="css/registration.css">
 
-
+     <?PHP
+    if(isset($_POST['submit'])){
+      
+      $email=$_POST['email'];       
+      $pass= $_POST['cpassword'];
+      $pass0= $_POST['password'];
+      $nom=$_POST['nom'];
+      $hash = password_hash($pass, PASSWORD_DEFAULT);
+      if( $pass==$pass0){
+                   
+      
+      $sql="INSERT INTO comptes VALUES ( '','$email', '$hash', '$nom')";
+      addstudent($conn,$sql);
+      header("location:index.php");
+  
+ 
+   }
+   else{
+ 
+   }
+  }
+  
+ 
+  
+?>
 
 <title>registration</title>
 </head>
 <body>
 
 
-<form>
+<form method="POST">
   <label>
     <p class="label-txt">ENTER YOUR EMAIL</p>
     <input type="email" class="input" name="email" required>
@@ -33,7 +57,7 @@
  
 
   <label>
-    <p class="label-txt">ENTER YOUR PASSWORD</p>
+    <p class="label-txt" name="passworde">ENTER YOUR PASSWORD</p>
     <input type="text" class="input" name="password" required>
     <div class="line-box">
       <div class="line"></div>
@@ -41,52 +65,20 @@
   </label>
 
   <label>
-    <p class="label-txt">CONFIG  YOUR PASSWORD</p>
+    <p class="label-txt" name="passworde2">CONFIG  YOUR PASSWORD</p>
     <input type="text" class="input" name="cpassword" required>
     <div class="line-box">
       <div class="line"></div>
     </div>
   </label>
-  <input type="submit" name="submit" value="submit" class="btn-info  ">
+  <input type="submit" name="submit"  class="btn-info  ">
 
 </form>
   
 
 
     
-    <?PHP
-    if(isset($_POST['submit'])){
-
-      $email=$_POST['email'];       
-      $pass= $_POST['cpassword'];
-      $pass0= $_POST['password'];
-      $nom=$_POST['nom'];
-      $hash = password_hash($pass, PASSWORD_DEFAULT);
-      if( $pass==$pass0){
-                   
-      
-      $sql=" INSERT INTO `comptes` (`id`, `email`, `pass`, `nom`) VALUES (NULL, '$email', '$hash', '$nom')";
-        
-     if (mysqli_query($conn, $sql)) {
-       echo "b1";
- 
-    } else {
-        echo "Error: " . $sql . ":-" . mysqli_error($conn);
- 
-     }
- 
-  
- 
-   }
-  }
- 
-   else {
    
- 
-    }
-  
-    mysqli_close($conn);
-?>
  
 
      

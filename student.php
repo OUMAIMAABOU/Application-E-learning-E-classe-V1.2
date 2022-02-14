@@ -139,13 +139,8 @@
                                    
                 <?php  
          
-                  
-                      $sql =mysqli_query($conn," SELECT * FROM students ORDER BY id desc ") ;
-                    
-                 
-                    
-
-                      while($row = mysqli_fetch_array($sql)){
+                      $allstudents = getstudent($conn);
+                      foreach ($allstudents as $row) {
                      ?>
                      
                     <tr>                  
@@ -156,8 +151,9 @@
                       <td><?php echo $row["phone1"]; ?></td>
                       <td><?php echo $row["phone2"]; ?></td>
                       <td><?php echo $row["dt"]; ?></td>
+                     
                       <td><a href="delete.php?id=<?php  echo $row["id"]; ?>"><img src="img/ic-delete.svg"></a>
-                      <a href="update.php?id=<?php echo $row["id"]; ?>"><img src=" img/ic-edit.svg"></a></td>
+                      <a href="update.php?id=<?php echo $row["id"]; ?>"><img src=" img/ic-edit.svg"></a>
                       </tr>
                   
                   <?php }   ?> 
@@ -172,6 +168,7 @@
             </div> 
       </div>      
      </div>   
+   
      <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>  
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>

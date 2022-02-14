@@ -1,7 +1,7 @@
 
 <?php
 include_once 'server.php';
-echo $_GET["id"];
+
 $id= $_GET["id"] ;
  
 $sql = "DELETE FROM courses WHERE id = '$id'";

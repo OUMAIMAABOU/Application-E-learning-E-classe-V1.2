@@ -100,13 +100,10 @@
       $date=$_POST['dat'];
 
       $sql ="INSERT INTO payment_details( nom , payment_schedule , b_Number , Amount_paid , Balance_amount,dat) VALUES ('$nom','$payment','$Number','$Amount','$Balance','$date') " ;
-    
- if (mysqli_query($conn, $sql)) {
+      addstudent($conn,$sql);
 
-} else {
-    echo "Error: " . $sql . ":-" . mysqli_error($conn);
- }
-}
+    }
+
  ?> 
               <div class=" table-responsive-sm table-responsive-md">
                 <table class="table table-striped  table-borderless table-hover bg-white mx-3 ">
@@ -126,16 +123,10 @@
                       </thead>
                       <tbody>
                     
-          <?php  
-
+          <?php      $allpay=getpay ($conn);
+          
+            foreach ($allpay as $row) {
                    
-                                      
-                    $sql =mysqli_query($conn," select * from payment_details ") ;
-
-
-
-
-                    while($row = mysqli_fetch_array($sql)){
                    
               ?>  
                  <tr>
@@ -151,14 +142,7 @@
                 </tr>
               
 <?php } ?> 
-
-
-
-    
-                      
-
-
-                    </tbody>
+             </tbody>
                 </table>
             </div>
     </div>  

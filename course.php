@@ -94,17 +94,10 @@ if(!empty($_POST['title'])&&!empty($_POST['dur'])&&!empty($_POST['prix'])){
 
 
   $sql ="INSERT INTO courses( title_course , duree_course , prix_course ) VALUES ('$title','$dur','$prix') " ;
+  addstudent($conn,$sql);
 
-if (mysqli_query($conn, $sql)) {
-
-} else {
-echo "Error: " . $sql . ":-" . mysqli_error($conn);
-}
 
 }
-else {
-}
-
 ?>     
 
               <div class=" table-responsive-sm table-responsive-md">
@@ -125,27 +118,17 @@ else {
                       </thead>
                       <tbody>
                     
-          <?php  
-
-                  
-                                      
-                    $sql =mysqli_query($conn," SELECT * FROM courses ORDER BY id desc  ") ;
-
-
-
-
-                    while($row = mysqli_fetch_array($sql)){
+          <?php                         
+                  $allcours = getcours($conn);
+                  foreach ($allcours as $row) {
                        $row['id']; 
-                   
               ?>  
                  <tr>
-                
-                <td><?php echo $row["title_course"]; ?></td>
+                                <td><?php echo $row["title_course"]; ?></td>
                 <td><?php echo $row["duree_course"]; ?></td>
                 <td><?php echo $row["prix_course"]; ?>DH</td>
                 <td><a href="courdelete.php?id=<?php echo $row["id"]; ?>"><img src="img/ic-delete.svg"></a></td>
                 <td> <a href="formup.php?id=<?php  echo $row["id"]; ?>"><img src=" img/ic-edit.svg"></a></td>
-              
                 </tr>              
 <?php } ?>  
 
