@@ -10,6 +10,7 @@
 
      <?PHP
     if(isset($_POST['submit'])){
+      if(!empty($_POST['email']) &&!empty($_POST['cpassword'])&&!empty($_POST['password']) && !empty($_POST['nom'])){
       
       $email=$_POST['email'];       
       $pass= $_POST['cpassword'];
@@ -26,9 +27,13 @@
  
    }
    else{
- 
+   echo "verfie pass";
    }
   }
+  echo '<div class="alert alert-danger" role="alert">
+     Remplir toutes champs
+</div>';
+}
   
  
   

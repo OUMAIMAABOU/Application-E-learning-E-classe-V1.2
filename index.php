@@ -2,52 +2,8 @@
 <?php 
  
  ?>
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>login</title>
-    <link href="css/bootstrap.min.css" rel="stylesheet" >
-    <link rel="stylesheet" href="css/style.css">
-    <link href="//cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css" rel="stylesheet">
-
-
-</head>
-
-<body >
-  
-    <main>
-        <div  class="container-fluid ">
-         <div class="row justify-content-center ">
-             <div class=" col-sm-12 col-md-6 col-lg-3">
-                    <form class="from-container" name ="forma1" method="POST" action="">
-                        <div class="form-group"> 
-                                    
-                            <div class="mb-4">
-                                <h1>E-classe</h1>
-                                <div  class="justify-content-centre">
-                                    <h2 >SIGN IN</h2>
-                                    <p>Enter your credentials to acces your account</p>
-                                </div>
-                            </div>    
-                            <div class="mb-4">
-                                <label>Email </label>
-                                <input type="email" class="form-control" placeholder="ENTER YOUR EMAIL" name="email" 
-                                value="<?php if(isset($_COOKIE["member_email"])) { echo $_COOKIE["member_email"]; } ?>" required>
-                            
-                            </div>
-                                <div class="mb-4">
-                                <label>Password</label>
-                                <input type="password" class="form-control" placeholder="ENTER YOUR EMAIL PASSWORD" name ="password"
-                                value="<?php if(isset($_COOKIE["member_password"])) { echo $_COOKIE["member_password"]; } ?>" required>
-                            </div>
-                            <div class="mb-4">  
-                                <input type="checkbox" name="remember" <?php if(isset($_COOKIE["member_email"])) { ?> checked <?php } ?> />  
-                                <label for="remember-me">Remember me</label>  
-                            </div> 
-                                                    <?php
+  <?php
+  $msg_error=null;
        if(isset($_POST['connect'])){
         {  
             $_SESSION["email"] = $_POST['email'];
@@ -90,10 +46,9 @@
        
         header('location:liste.php');
            }
-           echo '<label  class ="text-danger mb-3 text-center"> Email ou mot de passe incorrect</label>';
+         $msg_error= '<label  class ="text-danger mb-3 text-center"> Email ou mot de passe incorrect</label>';
         }
           else{
-             echo '<label  class ="text-danger mb-3 text-center"> Email ou mot de passe incorrect</label>';
               
           }
       
@@ -104,6 +59,53 @@
       
    
        ?> 
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>login</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet" >
+    <link rel="stylesheet" href="css/style.css">
+    <link href="//cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css" rel="stylesheet">
+
+
+</head>
+
+<body >
+  
+    <main>
+        <div  class="container-fluid ">
+         <div class="row justify-content-center ">
+             <div class=" col-sm-12 col-md-6 col-lg-3">
+                    <form class="from-container" name ="forma1" method="POST" action="">
+                        <div class="form-group"> 
+                                    
+                            <div class="mb-4">
+                                <h1>E-classe</h1>
+                                <div  class="justify-content-centre">
+                                    <h2 >SIGN IN</h2>
+                                    <p>Enter your credentials to acces your account</p>
+                                   <strong> <?php  echo $msg_error;  ?> </strong>
+                                </div>
+                            </div>    
+                            <div class="mb-4">
+                                <label>Email </label>
+                                <input type="email" class="form-control" placeholder="ENTER YOUR EMAIL" name="email" 
+                                value="<?php if(isset($_COOKIE["member_email"])) { echo $_COOKIE["member_email"]; } ?>" required>
+                            
+                            </div>
+                                <div class="mb-4">
+                                <label>Password</label>
+                                <input type="password" class="form-control" placeholder="ENTER YOUR EMAIL PASSWORD" name ="password"
+                                value="<?php if(isset($_COOKIE["member_password"])) { echo $_COOKIE["member_password"]; } ?>" required>
+                            </div>
+                            <div class="mb-4">  
+                                <input type="checkbox" name="remember" <?php if(isset($_COOKIE["member_email"])) { ?> checked <?php } ?> />  
+                                <label for="remember-me">Remember me</label>  
+                            </div> 
+                                                   
                             <div class="mb-4">
                             <input type="submit" name="connect" value="connect" class="btn-info  " style=" width: 100%;">
     
