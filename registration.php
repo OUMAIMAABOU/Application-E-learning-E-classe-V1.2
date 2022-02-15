@@ -9,15 +9,26 @@
      <link rel="stylesheet" href="css/registration.css">
 
      <?PHP
+     $msg_error=null;
+     $email=null;       
+     $pass=null;
+     $pass0= null;
+     $nom=null;
+     $nommsg=null;
+     $emailmsg=null;
+     $nompass=null;
+     $nompass0=null;
     if(isset($_POST['submit'])){
+    
       if(!empty($_POST['email']) &&!empty($_POST['cpassword'])&&!empty($_POST['password']) && !empty($_POST['nom'])){
       
       $email=$_POST['email'];       
       $pass= $_POST['cpassword'];
       $pass0= $_POST['password'];
       $nom=$_POST['nom'];
-      $hash = password_hash($pass, PASSWORD_DEFAULT);
       if( $pass==$pass0){
+      $hash = password_hash($pass, PASSWORD_DEFAULT);
+    
                    
       
       $sql="INSERT INTO comptes VALUES ( '','$email', '$hash', '$nom')";
@@ -27,12 +38,28 @@
  
    }
    else{
-   echo "verfie pass";
-   }
+    $msg_error= '<label  class ="text-danger mb-3 text-center">Veuillez vérifier votre mot de passe de confirmation </label>';
   }
-  echo '<div class="alert alert-danger" role="alert">
-     Remplir toutes champs
-</div>';
+  }
+  else{
+   if( $email==""){
+     $emailmsg='<label  class ="text-danger mb-3 text-center"> veuillez remplir le champ obligatoire.</label>';
+   }
+  if ( $nom==""){
+    $nommsg='<label  class ="text-danger mb-3 text-center"> veuillez remplir le champ obligatoire. </label>';
+
+  }
+  if ( $pass==""){
+    $nompass='<label  class ="text-danger mb-3 text-center"> veuillez remplir le champ obligatoire.</label>';
+
+  }
+  if ( $pass0==""){
+    $nompass0='<label  class ="text-danger mb-3 text-center"> veuillez remplir le champ obligatoire.</label>';
+
+  }
+
+  }
+
 }
   
  
@@ -45,37 +72,51 @@
 
 
 <form method="POST">
-  <label>
-    <p class="label-txt">ENTER YOUR EMAIL</p>
-    <input type="email" class="input" name="email" required>
+ 
+
+   
+    <div  class="justify-content-centre">
+        <h2 >SIGN UP</h2>
+    </div>
+    <label> <p class="label-txt">ENTER YOUR EMAIL</p>
+    <input type="email" class="input" name="email"  value='<?php echo $email;?>'required>
     <div class="line-box">
-      <div class="line"></div>
+      <div class="line">
+      </div>
+      <?php echo  $emailmsg;?>
     </div>
   </label>
   <label>
     <p class="label-txt">ENTER YOUR NAME</p>
-    <input type="text" class="input" name="nom" required>
+    <input type="text" class="input" name="nom"   value='<?php echo $nom;?>'required>
     <div class="line-box">
       <div class="line"></div>
+      <?php echo  $nommsg;?>
     </div>
   </label>
  
 
   <label>
-    <p class="label-txt" name="passworde">ENTER YOUR PASSWORD</p>
-    <input type="text" class="input" name="password" required>
+    <p class="label-txt" name="passworde">ENTER YOUR PASSWORD </p>
+    <input type="password" class="input" name="password"   value='<?php echo $pass0;?>'required>
     <div class="line-box">
       <div class="line"></div>
     </div>
+    <?php echo  $nompass0;?>
+    
   </label>
 
   <label>
-    <p class="label-txt" name="passworde2">CONFIG  YOUR PASSWORD</p>
-    <input type="text" class="input" name="cpassword" required>
+    <p class="label-txt" name="passworde2">CONFIRM YOUR PASSWORD</p>
+    <input type="password" class="input" name="cpassword"   value='<?php echo $pass;?>'required>
+    
     <div class="line-box">
       <div class="line"></div>
+      
     </div>
-  </label>
+    <?php echo  $nompass;?></label>
+    <strong ><?php echo $msg_error; ?></strong>
+  
   <input type="submit" name="submit"  class="btn-info  ">
 
 </form>
