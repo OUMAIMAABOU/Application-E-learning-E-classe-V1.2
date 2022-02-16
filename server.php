@@ -1,8 +1,7 @@
+
 <?php 
 
  session_start();
-
-
 
    $conn =mysqli_connect("localhost", "root", "", "e_classe_db");
    if ($conn->connect_error) {
@@ -27,8 +26,7 @@
   }
   function addstudent($conn,$sql)
 	{
-   
-    
+
     if (mysqli_query($conn, $sql)) {
   echo ' <div class="alert alert-warning alert-dismissible fade show" role="alert">
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -56,7 +54,6 @@
     $sql =mysqli_query($conn," SELECT * FROM students ORDER BY id desc ") ;
     
     return $sql ;
-      
 
 
   }
@@ -68,8 +65,6 @@
     
     return $sql ;
       
-
-
   }
 
   function getpay ($conn){

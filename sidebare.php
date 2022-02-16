@@ -3,7 +3,7 @@
           <h1> E-classe </h1>
         </div>
         <div class="list-group ">
-            <img src="img/profile.jpg" alt="profile picture"
+            <img src="img/<?php echo $_SESSION["img"];?>" alt="profile picture"
                 class=" profile img-fluid rounded-circle mx-auto d-block my-2 p-1" style="width:80% ; ">
             <div class="text-center ">
                 <h2> <?php echo $_SESSION["name"];?></h2>

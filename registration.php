@@ -26,17 +26,33 @@
       $pass= $_POST['cpassword'];
       $pass0= $_POST['password'];
       $nom=$_POST['nom'];
+      $img=$_POST['img'];
       if( $pass==$pass0){
+        $res=mysqli_query($conn," SELECT * FROM  comptes WHERE email = '$email'");
+        if(mysqli_num_rows($res) != 0){
+          echo ' <div class="alert alert-warning alert-dismissible fade show" role="alert">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <strong>Email existe deja 
+          </strong> 
+        </div>
+        
+        <script>
+          $(".alert").alert();
+        </script>';
+        }else{
       $hash = password_hash($pass, PASSWORD_DEFAULT);
     
                    
       
-      $sql="INSERT INTO comptes VALUES ( '','$email', '$hash', '$nom')";
+      $sql="INSERT INTO comptes VALUES ( '','$email', '$hash', '$nom','$img')";
       addstudent($conn,$sql);
       header("location:index.php");
   
  
    }
+  }
    else{
     $msg_error= '<label  class ="text-danger mb-3 text-center">Veuillez vérifier votre mot de passe de confirmation </label>';
   }
@@ -115,6 +131,15 @@
       
     </div>
     <?php echo  $nompass;?></label>
+
+    <div>
+   
+   
+    <input type="file" class="input" name="img" >
+  
+      
+    </div>
+
     <strong ><?php echo $msg_error; ?></strong>
   
   <input type="submit" name="submit"  class="btn-info  ">

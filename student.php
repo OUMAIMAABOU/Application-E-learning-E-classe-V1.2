@@ -1,8 +1,6 @@
 
-<?php  include_once 'server.php'; session();?>
-
-
-
+<?php  include_once 'server.php';
+ session();?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -16,7 +14,6 @@
     <link  href="css/dashboord.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnrow.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
 
 </head>
 <body class="row">

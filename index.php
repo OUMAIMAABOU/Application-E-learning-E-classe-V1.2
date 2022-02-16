@@ -2,11 +2,12 @@
 <?php 
  
  ?>
+
   <?php
   $msg_error=null;
        if(isset($_POST['connect'])){
         {  
-            $_SESSION["email"] = $_POST['email'];
+              $_SESSION["email"] = $_POST['email'];
               $_SESSION['last_login'] = time();  
                  
          } 
@@ -26,7 +27,9 @@
                                    
                     $_SESSION["name"]= $rows['nom'];
                     $_SESSION["email"]=$_POST['email'];
+                    $_SESSION["img"]= $rows['image'];
                     if(!empty($_POST["remember"])) {
+                        
                         setcookie ("member_email",$email,time()+2592000);
                         setcookie ("member_password",$pass,time()+ 2592000);
 
