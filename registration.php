@@ -30,7 +30,7 @@
       if( $pass==$pass0){
         $res=mysqli_query($conn," SELECT * FROM  comptes WHERE email = '$email'");
         if(mysqli_num_rows($res) != 0){
-          echo ' <div class="alert alert-warning alert-dismissible fade show" role="alert">
+          echo ' <div class="alert alert-danger alert-dismissible fade show" role="alert">
           <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
