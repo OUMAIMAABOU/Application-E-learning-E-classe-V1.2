@@ -12,31 +12,21 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
 
     </head>
-    <?php
- 
-
-    $query = mysqli_query ($conn,"SELECT * FROM courses WHERE  id ='" . $_GET["id"] . "'");
-
-    while ($row = mysqli_fetch_array ($query)) 
-    {
-        
-    ?>
+  
     <body>
-    <div class="d-flex" id="dashboard">
-        <div class="bg" id="sidebar-dashboard">
-        <?php include 'sidebare.php'?>
-        </div>
-        <div id="page-content-dashboard">
-          
-          <div class=" px-0 ">
-            <?php include 'navbar.php'?>
-          </div>
+  
                 <form  method="POST" action =""  >
 
-            
+                <?php
+ 
+
+ $query = mysqli_query ($conn,"SELECT * FROM courses WHERE  id ='" . $_GET["id"] . "'");
+
+ $row = mysqli_fetch_array ($query);
+ ?>
               
                   <div class="container "  style=" margin-top: 203px;"> 
-                   <div class="col-md-6">
+                   <div class="col-md-12">
                       <input type="hidden" class="form-control" name="id" value="<?php echo $row['id'] ; ?>" >
 
                        
@@ -59,8 +49,29 @@
                   
                 </form>    
     
-    </div>    
-    </div>       
+         
+ 
+  <?php 
+
+      if(!empty($_POST['id']) && !empty($_POST['title']) && !empty($_POST['dur']) && !empty($_POST['prix']) ){    
+
+$id=$_POST['id'];
+$title=$_POST['title'];
+$dur=$_POST['dur'];
+$prix= $_POST['prix'];
+
+
+$sql="UPDATE courses 
+SET title_course = '$title', duree_course = '$dur',prix_course = '$prix' WHERE id ='" .$id . "'";		
+ if (mysqli_query($conn, $sql)) {
+  
+  header("location: course.php");
+
+  } else {
+echo "Error updating record: " . mysqli_error($conn);
+}
+      }
+?>
                 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>  
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
@@ -76,30 +87,7 @@
     </script>           
             
   </body>
-  <?php 
-      if(!empty($_POST['id']) && !empty($_POST['title']) && !empty($_POST['dur']) && !empty($_POST['prix']) ){    
-
-$id=$_POST['id'];
-$title=$_POST['title'];
-$dur=$_POST['dur'];
-$prix= $_POST['prix'];
-
-
-$sql="UPDATE courses 
-SET title_course = '$title', duree_course = '$dur',prix_course = '$prix' WHERE id ='" .$id . "'";		
-
-if (mysqli_query($conn, $sql)) {
-header("location:course.php");
-} else {
-echo "Error updating record: " . mysqli_error($conn);
-}
-      }
-?>
- 
 </html>
-<?php
- } 
-  
-?>
+
 
 <?php mysqli_close($conn);?>

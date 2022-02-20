@@ -41,7 +41,7 @@ session();
                  
                                 <p class="fs-5 mb-5 Secondary-text">Students</p>
                             </div> 
-                            <?php  $sql =mysqli_query($conn," SELECT id FROM students order by id") ;
+                            <?php  $sql =mysqli_query($conn," SELECT id FROM students ") ;
                                  $row= mysqli_num_rows($sql);
                                  
                                 echo '<h3 class="fs-5 mt-5 ">'.$row.'</h3>'
@@ -59,10 +59,10 @@ session();
                                 <p class="fs-5 mb-5 Secondary-text">Course</p>
                             </div>
                             <?php  $sql =mysqli_query($conn," SELECT COUNT(id) as id FROM courses ") ;
-                               while($row=mysqli_fetch_assoc($sql)){ 
-                                 
+                               $row=mysqli_fetch_assoc($sql);
+   
                                 echo '<h3 class="fs-5 mt-5 ">'.$row['id'].'</h3>';
-                            } 
+                            
                             ?>                     
                                </div>
                     </div>
@@ -75,9 +75,9 @@ session();
                                 <p class="fs-5 mb-5 Secondary-text">Payments</p>
                             </div>
                             <?php  $sql =mysqli_query($conn," SELECT SUM(Amount_paid) as sum FROM payment_details ") ;
-                               while( $row= mysqli_fetch_assoc($sql)) {
+                              $row= mysqli_fetch_assoc($sql);
                                 echo '<h3 class="fs-5 mt-5 ">'.$row['sum'].'dh </h3>';
-                               }
+                              
                                  
                                
                             ?>                           </div>
@@ -90,7 +90,7 @@ session();
 
                                 <p class="fs-5 mb-5 ">Users</p>
                             </div>
-                            <?php  $sql =mysqli_query($conn," SELECT id FROM comptes order by id") ;
+                            <?php  $sql =mysqli_query($conn," SELECT id FROM comptes ") ;
                                  $row= mysqli_num_rows($sql);
                                  
                                 echo '<h3 class="fs-5 mt-5 ">'.$row.'</h3>'

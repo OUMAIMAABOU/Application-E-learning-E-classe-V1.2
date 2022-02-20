@@ -9,8 +9,6 @@
                 <h2> <?php echo $_SESSION["name"];?></h2>
                 <span class=" text-info fs-4"> admin </span>
             </div>
-
-            
             <a href="liste.php" class="list-group-item mx-5 border-0 mt-3  <?php if( basename($_SERVER['REQUEST_URI'])=="liste.php"){ echo "bg-info";}else{echo"bg-transparent";};?>" >
                 <i class="fas fa-home"></i> Home</a>
             <a href="course.php" class="list-group-item mx-5 border-0  <?php if( basename($_SERVER['REQUEST_URI'])=="course.php"){ echo "bg-info";}else{echo"bg-transparent";};?>"  >

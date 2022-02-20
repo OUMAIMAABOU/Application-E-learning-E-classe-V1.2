@@ -9,18 +9,18 @@
   }
   
   function session(){
+     
+    
     if(isset($_SESSION["email"]))  
     {  
          if((time() - $_SESSION['last_login']) > 86400) 
          {  
+           
               header("location:deconnexion.php");  
          } 
-         
-        
        }
        if(empty($_SESSION["email"]))
        {
-        
                header('location:index.php');
            }
   }
@@ -49,12 +49,11 @@
     }
 	}
 
-  function getstudent ($conn){
+  function getstudent ($con){
     
-    $sql =mysqli_query($conn," SELECT * FROM students ORDER BY id desc ") ;
+    $sql =mysqli_query($con," SELECT * FROM students ORDER BY id desc ") ;
     
     return $sql ;
-
 
   }
 

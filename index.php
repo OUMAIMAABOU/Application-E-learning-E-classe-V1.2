@@ -5,6 +5,9 @@
 
   <?php
   $msg_error=null;
+  $msg_error1=null;
+  $msg_error2=null;
+
        if(isset($_POST['connect'])){
         {  
               $_SESSION["email"] = $_POST['email'];
@@ -49,18 +52,22 @@
        
         header('location:liste.php');
            }
-         $msg_error= '<label  class ="text-danger mb-3 text-center"> Email ou mot de passe incorrect</label>';
+         else{
+              $msg_error= '<div class="alert alert-danger" role="alert"> Email ou mot de passe incorrect!</div>'; 
+          } 
         }
-          else{
-              
-          }
+          
       
+        }else{
+            if ($_POST['email']=="") {
+                $msg_error1= '<div class="alert alert-danger" role="alert">veuillez remplir le champ obligatoire!</div>';
+            }
+            if ($_POST['password']=="") {
+                $msg_error2= '<div class="alert alert-danger" role="alert"> veuillez remplir le champ obligatoire!</div>';
+            }
         }
        }
       
-        
-      
-   
        ?> 
 <!DOCTYPE html>
 <html lang="en">
@@ -99,11 +106,13 @@
                                 value="<?php if(isset($_COOKIE["member_email"])) { echo $_COOKIE["member_email"]; } ?>" required>
                             
                             </div>
+                            <?php   echo $msg_error1;?>
                                 <div class="mb-4">
                                 <label>Password</label>
                                 <input type="password" class="form-control" placeholder="ENTER YOUR EMAIL PASSWORD" name ="password"
                                 value="<?php if(isset($_COOKIE["member_password"])) { echo $_COOKIE["member_password"]; } ?>" required>
                             </div>
+                            <?php   echo $msg_error2;?>
                             <div class="mb-4">  
                                 <input type="checkbox" name="remember" <?php if(isset($_COOKIE["member_email"])) { ?> checked <?php } ?> />  
                                 <label for="remember-me">Remember me</label>  
