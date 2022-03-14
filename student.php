@@ -148,8 +148,9 @@
                       <td><?php echo $row["phone1"]; ?></td>
                       <td><?php echo $row["phone2"]; ?></td>
                       <td><?php echo $row["dt"]; ?></td>
-                     
-                      <td><a href="delete.php?id=<?php  echo $row["id"]; ?>"><img src="img/ic-delete.svg"></a>
+                    
+                      <td><a href="delete.php?id=<?php  echo $row["id"]; ?>" ><input type="image"  src="img/ic-delete.svg" 
+                       onclick="if(window.confirm('Voulez-vous vraiment supprimer ?')){return true;}else{return false;}"></a>
                       <a href="update.php?id=<?php echo $row["id"]; ?>"><img src=" img/ic-edit.svg"></a>
                       </tr>
                   

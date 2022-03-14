@@ -127,7 +127,9 @@ if(!empty($_POST['title'])&&!empty($_POST['dur'])&&!empty($_POST['prix'])){
                                 <td><?php echo $row["title_course"]; ?></td>
                 <td><?php echo $row["duree_course"]; ?></td>
                 <td><?php echo $row["prix_course"]; ?>DH</td>
-                <td><a href="courdelete.php?id=<?php echo $row["id"]; ?>"><img src="img/ic-delete.svg"></a></td>
+              
+                <td><a href="courdelete.php?id=<?php echo $row["id"]; ?>">  <input type="image"  src="img/ic-delete.svg" 
+                       onclick="if(window.confirm('Voulez-vous vraiment supprimer ?')){return true;}else{return false;}"></a></td>
                 <td> <a href="formup.php?id=<?php  echo $row["id"]; ?>"><img src=" img/ic-edit.svg"></a></td>
                 </tr>              
 <?php } ?>  

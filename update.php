@@ -14,7 +14,7 @@
 
     $query = mysqli_query ($conn,"SELECT * FROM students WHERE  id ='" . $_GET["id"] . "'");
 
-    while ($row = mysqli_fetch_array ($query)) 
+    if ($row = mysqli_fetch_array ($query)) 
     {
         
     ?>

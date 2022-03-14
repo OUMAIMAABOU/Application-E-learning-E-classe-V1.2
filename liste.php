@@ -41,7 +41,7 @@ session();
                  
                                 <p class="fs-5 mb-5 Secondary-text">Students</p>
                             </div> 
-                            <?php  $sql =mysqli_query($conn," SELECT id FROM students ") ;
+                            <?php  $sql =mysqli_query($conn," SELECT * FROM students ") ;
                                  $row= mysqli_num_rows($sql);
                                  
                                 echo '<h3 class="fs-5 mt-5 ">'.$row.'</h3>'
@@ -90,7 +90,7 @@ session();
 
                                 <p class="fs-5 mb-5 ">Users</p>
                             </div>
-                            <?php  $sql =mysqli_query($conn," SELECT id FROM comptes ") ;
+                            <?php  $sql =mysqli_query($conn," SELECT * FROM comptes ") ;
                                  $row= mysqli_num_rows($sql);
                                  
                                 echo '<h3 class="fs-5 mt-5 ">'.$row.'</h3>'
