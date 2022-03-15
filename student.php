@@ -151,8 +151,9 @@
                     
                       <td><a href="delete.php?id=<?php  echo $row["id"]; ?>" ><input type="image"  src="img/ic-delete.svg" 
                        onclick="if(window.confirm('Voulez-vous vraiment supprimer ?')){return true;}else{return false;}"></a>
-                      <a href="update.php?id=<?php echo $row["id"]; ?>"><img src=" img/ic-edit.svg"></a>
+                      <a href="update.php?id=<?php echo $row["id"]; ?>"> </input><img src=" img/ic-edit.svg"></a>
                       </tr>
+                      
                   
                   <?php }   ?> 
                       

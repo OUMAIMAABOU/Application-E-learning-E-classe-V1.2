@@ -7,6 +7,7 @@
   $msg_error=null;
   $msg_error1=null;
   $msg_error2=null;
+  $msg_erroremail=null;
 
        if(isset($_POST['connect'])){
         {  
@@ -19,8 +20,13 @@
    
            $email=mysqli_real_escape_string($conn,$_POST['email']);
            $pass= mysqli_real_escape_string($conn,$_POST['password']);
-         
+           if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                  if (preg_match('/\"|\#|\'|\*/',  $email)||preg_match('/\"|\#|\'|\*/',  $pass)){
+            echo '<div class="alert alert-danger" role="alert"> le format de text invalide</div>';
+        }
+               
            $res=mysqli_query($conn," SELECT * FROM  comptes WHERE email = '$email'");
+      
            if(mysqli_num_rows($res) != 0){
             
             $rows=mysqli_fetch_assoc($res);
@@ -52,10 +58,16 @@
        
         header('location:liste.php');
            }
+        } 
          else{
               $msg_error= '<div class="alert alert-danger" role="alert"> Email ou mot de passe incorrect!</div>'; 
           } 
+          
         }
+        else {
+            $msg_erroremail="<div class='alert alert-danger' role='alert'>$email is not a valid email address!</div>";
+        }
+     
           
       
         }else{
@@ -67,7 +79,8 @@
             }
         }
        }
-      
+       
+
        ?> 
 <!DOCTYPE html>
 <html lang="en">
@@ -90,7 +103,7 @@
         <div  class="container-fluid ">
          <div class="row justify-content-center ">
              <div class=" col-sm-12 col-md-6 col-lg-3">
-                    <form class="from-container" name ="forma1" method="POST" action="">
+                    <form class="from-container" name ="forma1" method="POST" action="" id="form">
                         <div class="form-group"> 
                                     
                             <div class="mb-4">
@@ -103,15 +116,15 @@
                             </div>    
                             <div class="mb-4">
                                 <label>Email </label>
-                                <input type="email" class="form-control" placeholder="ENTER YOUR EMAIL" name="email" 
+                                <input type="email" class="form-control " placeholder="ENTER YOUR EMAIL" name="email"  id="email"
                                 value="<?php if(isset($_COOKIE["member_email"])) { echo $_COOKIE["member_email"]; } ?>" required>
                             
                             </div>
-                            <?php   echo $msg_error1;?>
+                            <?php   echo $msg_error1; echo $msg_erroremail?>
                                 <div class="mb-4">
                                 <label>Password</label>
-                                <input type="password" class="form-control" placeholder="ENTER YOUR EMAIL PASSWORD" name ="password"
-                                value="<?php if(isset($_COOKIE["member_password"])) { echo $_COOKIE["member_password"]; } ?>" required>
+                                <input type="password" class="form-control " placeholder="ENTER YOUR EMAIL PASSWORD" name ="password"
+                                id="password" value="<?php if(isset($_COOKIE["member_password"])) { echo $_COOKIE["member_password"]; } ?>" required>
                             </div>
                             <?php   echo $msg_error2;?>
                             <div class="mb-4">  
@@ -139,6 +152,9 @@
 
     <?php   mysqli_close($conn); ?>  
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
+ 
+
+    <script src="js/app.js"></script>
 
 
 
