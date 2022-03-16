@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-     <link rel="stylesheet" href="css/registration.css">
+    <link rel="stylesheet" href="css/style.css">
 
      <?PHP
      $msg_error=null;
@@ -82,94 +82,81 @@
   
 ?>
 
-<title>registration</title>
+<title>SIGN UP</title>
 </head>
 <body>
 
+<div  class="container-fluid ">
+         <div class="row justify-content-center ">
+             <div class=" col-sm-12 col-md-6 col-lg-3">
+       
+       
+      <form  class ="from-container" id ="form" method="POST" onsubmit="return validation()">
+   <div class=" ">
+            <h1 class="border-start px-2 m-3 border-info border-5 fw-bold fs-3">
+               E-classe
+            </h1>
+          </div>
+          <div class=" justify-content-centre ">
+            <h2> SIGN UP </h2>
+            <p class=" text-muted "> Enter your information  to register a new accont</p>  
+          </div>
 
-<form method="POST">
- 
+    <div class="form-group mb-3">
+              <label >EMAIL :</label>
+              <input type="text" class="form-control" name='email' id="email"  value='<?php echo $email;?>' >
+              <span id="idemail" class="text-danger "></span>
+          </div>
 
-   
-    <div  class="justify-content-centre">
-        <h2 >SIGN UP</h2>
-    </div>
-    <label> <p class="label-txt">ENTER YOUR EMAIL</p>
-    <input type="email" class="input" name="email"  value='<?php echo $email;?>'required>
-    <div class="line-box">
-      <div class="line">
-      </div>
-      <?php echo  $emailmsg;?>
-    </div>
-  </label>
-  <label>
-    <p class="label-txt">ENTER YOUR NAME</p>
-    <input type="text" class="input" name="nom"   value='<?php echo $nom;?>'required>
-    <div class="line-box">
-      <div class="line"></div>
-      <?php echo  $nommsg;?>
-    </div>
-  </label>
- 
+          <div class="form-group mt-3">
+            <label >NAME :</label>
+            <input type="text" class="form-control" name="nom"  id="nom"  value='<?php echo $nom;?>' >
+            <span id="idnom" class="text-danger "></span>
+          </div>
 
-  <label>
-    <p class="label-txt" name="passworde">ENTER YOUR PASSWORD </p>
-    <input type="password" class="input" name="password"   value='<?php echo $pass0;?>'required>
-    <div class="line-box">
-      <div class="line"></div>
-    </div>
-    <?php echo  $nompass0;?>
-    
-  </label>
+          <div class="form-group mt-3">
+            <label >PASSWORD :</label>
+            <input type="password" class="form-control" name="password" id="password"   value='<?php echo $pass0;?>'>
+            <span id="idpassword" class="text-danger "></span>
+          </div>
+          <div class="form-group mt-3">
+            <label >CONFIRME PASSWORD :</label>
+            <input type="password" class="form-control" name="cpassword" id="cpassword"  value='<?php echo $pass;?>'>
+            <span id="idcpassword" class="text-danger "></span>
 
-  <label>
-    <p class="label-txt" name="passworde2">CONFIRM YOUR PASSWORD</p>
-    <input type="password" class="input" name="cpassword"   value='<?php echo $pass;?>'required>
-    
-    <div class="line-box">
-      <div class="line"></div>
-      
-    </div>
-    <?php echo  $nompass;?></label>
+          </div>
+          <div class="form-group mt-3">
+            <label >IMAGE :</label>
+            <input type="file" class="form-control" name="img" >
+          </div>
 
-    <div>
-   
-   
-    <input type="file" class="input" name="img" >
   
-      
-    </div>
+   
+          <input type="submit"class="  btn-info w-100   " name="submit"> 
 
-    <strong ><?php echo $msg_error; ?></strong>
+          <div class="mt-3 text-center">
+            <span class="text-muted">
+            have already an account? 
+            </span>
+             <a class="text-info text-decoration-underline" href="index.php"> <span>Login her</span></a> 
+          </div>
   
-  <input type="submit" name="submit"  class="btn-info  ">
 
 </form>
-  
+</div>
+    </div>
+    </div>
+  </main>
 
 
     
-   
+  <script src="js/sign.js"> </script>
+
  
 
      
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script>
-$(document).ready(function(){
 
-$('.input').focus(function(){
-  $(this).parent().find(".label-txt").addClass('label-active');
-});
-
-$(".input").focusout(function(){
-  if ($(this).val() == '') {
-    $(this).parent().find(".label-txt").removeClass('label-active');
-  };
-
-});
-
-});
-</script>
 </body>
 </html>

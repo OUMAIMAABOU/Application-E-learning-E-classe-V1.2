@@ -103,7 +103,7 @@
         <div  class="container-fluid ">
          <div class="row justify-content-center ">
              <div class=" col-sm-12 col-md-6 col-lg-3">
-                    <form class="from-container" name ="forma1" method="POST" action="" id="form">
+                    <form class="from-container" name ="forma1" method="POST" action="" id="formindex" >
                         <div class="form-group"> 
                                     
                             <div class="mb-4">
@@ -116,15 +116,17 @@
                             </div>    
                             <div class="mb-4">
                                 <label>Email </label>
-                                <input type="email" class="form-control " placeholder="ENTER YOUR EMAIL" name="email"  id="email"
-                                value="<?php if(isset($_COOKIE["member_email"])) { echo $_COOKIE["member_email"]; } ?>" required>
+                                <input type="email" class="form-control " placeholder="ENTER YOUR EMAIL" name="email"  id="emailindex"
+                                value="<?php if(isset($_COOKIE["member_email"])) { echo $_COOKIE["member_email"]; } ?>" >
                             
                             </div>
                             <?php   echo $msg_error1; echo $msg_erroremail?>
                                 <div class="mb-4">
                                 <label>Password</label>
                                 <input type="password" class="form-control " placeholder="ENTER YOUR EMAIL PASSWORD" name ="password"
-                                id="password" value="<?php if(isset($_COOKIE["member_password"])) { echo $_COOKIE["member_password"]; } ?>" required>
+                                id="passwordindex" value="<?php if(isset($_COOKIE["member_password"])) { echo $_COOKIE["member_password"]; } ?>" >
+                                <span id="idpassword" class="text-danger "></span>
+
                             </div>
                             <?php   echo $msg_error2;?>
                             <div class="mb-4">  
@@ -133,7 +135,7 @@
                             </div> 
                                                    
                             <div class="mb-4">
-                            <input type="submit" name="connect" value="connect" class="btn-info  " style=" width: 100%;">
+                            <input type="submit" name="connect" value="connect" class="btn-info  " style=" width: 100%;" >
     
                               
                             
@@ -152,9 +154,10 @@
 
     <?php   mysqli_close($conn); ?>  
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
+    <script src="js/app.js"></script>
+
  
 
-    <script src="js/app.js"></script>
 
 
 

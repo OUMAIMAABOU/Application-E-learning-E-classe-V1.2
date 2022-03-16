@@ -1,20 +1,25 @@
 
+const formindex = document.getElementById('formindex');
 
-const email = document.getElementById('email').value;
-const password = document.getElementById('password').value;
+const emailindex = document.getElementById('emailindex');
+const passwordindex = document.getElementById('passwordindex');
 
-form.addEventListener("click", checkInputs() )
+console.log(formindex);
+formindex.addEventListener('submit', checkInputs);
 
 
-function checkInputs() {
 
-    if(password.length > 2 || email.length >16) {
-        
+
+function checkInputs(e) {
+   
+    if(!(passwordindex.value.length >6  && passwordindex.value.length <12)) {
+        e.preventDefault();
         Swal.fire({
             icon: 'error',
-            title: 'rendre un texte plus court!',
+            title: 'incorrect  password size!',
            
           })
-}
+          
+        }
 
 }
