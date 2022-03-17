@@ -14,7 +14,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+     
+     <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js">
+ </script>
+ <script src="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.2/js/toastr.min.js">
+ </script>
 
 </head>
 
@@ -128,7 +133,7 @@ if(!empty($_POST['title'])&&!empty($_POST['dur'])&&!empty($_POST['prix'])){
                 <td><?php echo $row["duree_course"]; ?></td>   
                 <td><?php echo $row["prix_course"]; ?>DH</td>
               
-                <td><a href="courdelete.php?id=<?php echo $row['id']; ?>">  <input type="image"  src="img/ic-delete.svg" 
+                <td><a href="courdelete.php?id=<?php echo $row['id']; ?>">  <img  src="img/ic-delete.svg" 
                        onclick="if(window.confirm('Voulez-vous vraiment supprimer ?')){return true;}else{return false;}"></a></td>
                 <td> <a href="formup.php?id=<?php  echo $row["id"]; ?>"><img src=" img/ic-edit.svg"></a></td>
                 

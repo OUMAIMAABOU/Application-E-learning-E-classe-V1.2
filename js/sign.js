@@ -43,7 +43,7 @@ function validation(){
 }
 function validateEmail(email) 
     {
-        var re = /\S+@\S+\.\S+/;
+        var re = /\w+@\w+\.\w+/;
         return re.test(email);
     }
 

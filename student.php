@@ -14,7 +14,13 @@
     <link  href="css/dashboord.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnrow.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
+  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+     
+      <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js">
+  </script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.2/js/toastr.min.js">
+  </script>
 </head>
 <body class="row">
   <main>
@@ -57,7 +63,7 @@
       </div>
       <div class="modal-body">
 
-      <form  method="POST" action="" onsubmit="return validation()">
+      <form  method="POST" action="">
 
             
               
@@ -68,7 +74,6 @@
 
  
       <input type="email" placeholder="Entrez votre Email"class="form-control my-3" name="email" id="email">
-      <span id="idemail" class="text-danger "></span>
 
 
  
@@ -95,7 +100,7 @@
 </div>                 
                
 <?PHP
-   if(!empty($_POST['img'])&&!empty($_POST['name'])&&!empty($_POST['email'])&&!empty($_POST['phone'])&&!empty($_POST['Number'])&&!empty($_POST['date'])){
+   if(!empty($_POST['name'])&&!empty($_POST['email'])&&!empty($_POST['phone'])&&!empty($_POST['Number'])&&!empty($_POST['date'])){
          $img=$_POST['img'];
          $nom=$_POST['name'];
          $email=$_POST['email'];
@@ -106,14 +111,10 @@
          $res ="INSERT INTO students(img , nom , email , phone1 , phone2 , dt) VALUES ('$img','$nom','$email','$phone','$nbr','$date') " ;
      
       addstudent($conn,$res);
- 
 
   }
 
-  else {
-  
 
-   }
 
 ?>
             

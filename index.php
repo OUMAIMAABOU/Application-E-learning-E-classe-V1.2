@@ -8,7 +8,7 @@
   $msg_error1=null;
   $msg_error2=null;
   $msg_erroremail=null;
-
+  
        if(isset($_POST['connect'])){
         {  
               $_SESSION["email"] = $_POST['email'];
@@ -43,6 +43,7 @@
                         setcookie ("member_password",$pass,time()+ 2592000);
 
                             }
+                           
                             else  
                             {  
                             if(isset($_COOKIE["member_email"]))   
